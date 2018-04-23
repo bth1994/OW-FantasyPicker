@@ -29,13 +29,13 @@ public class ChoiceService {
         return new ResponseEntity<>(choiceRepository.findAll(), HttpStatus.OK);
     }
 
-    @Cacheable("allMatchChoiceCache")
+    @Cacheable("allChoiceCache")
     @CacheEvict(value = "choiceCache", allEntries = true)
     public ResponseEntity<Iterable<Choice>> getAllChoicesBymatch_id(Long match_id) {
         return new ResponseEntity<>(choiceRepository.getAllChoicesBymatch_id(match_id), HttpStatus.OK);
     }
 
-    @Cacheable("allUserChoiceCache")
+    @Cacheable("allChoiceCache")
     @CacheEvict(value = "choiceCache", allEntries = true)
     public ResponseEntity<Iterable<Choice>> getAllChoicesByuser_id(Long userId) {
         return new ResponseEntity<>(choiceRepository.getAllChoicesByuser_id(userId), HttpStatus.OK);
