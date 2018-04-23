@@ -1,6 +1,6 @@
 package com.ourowproject.owproject.services;
 
-import com.amazonaws.services.rds.model.ResourceNotFoundException;
+//import com.amazonaws.services.rds.model.ResourceNotFoundException;
 import com.ourowproject.owproject.entities.User;
 import com.ourowproject.owproject.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
