@@ -40,4 +40,8 @@ public class MatchService {
     public ResponseEntity<Match> updateMatch(Match match) {
         return new ResponseEntity<>(matchRepository.save(match), HttpStatus.OK);
     }
+
+    /**
+     * To-Do: getMatchesByTeam, getMatchesByDate, getMatchesByStatus
+     */
 }
