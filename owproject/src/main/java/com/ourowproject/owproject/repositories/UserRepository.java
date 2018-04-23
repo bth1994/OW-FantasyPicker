@@ -4,5 +4,7 @@ import com.ourowproject.owproject.entities.User;
 import org.springframework.data.repository.CrudRepository;
 
 public interface UserRepository extends CrudRepository<User, Long> {
+
     User findUserById(Long userId);
+
 }
