@@ -100,5 +100,5 @@ public class UserServiceTest {
 
         Assert.assertEquals(expected, actual);
     }
-    
+
 }
