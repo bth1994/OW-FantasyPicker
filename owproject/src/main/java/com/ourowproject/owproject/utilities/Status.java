@@ -1,5 +1,5 @@
 package com.ourowproject.owproject.utilities;
 
-public enum StatusEnum {
+public enum Status {
 
 }
