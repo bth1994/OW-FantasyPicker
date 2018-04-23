@@ -31,8 +31,8 @@ public class PlayerService {
         return new ResponseEntity<>(playerRepository.findPlayerById(playerId), HttpStatus.OK);
     }
     @Cacheable("playerCache")
-    public ResponseEntity<Iterable<Player>> getAllPlayersByTeamId(Long teamId) {
-        return new ResponseEntity<>(playerRepository.findAllPlayersByTeamId(teamId), HttpStatus.OK);
+    public ResponseEntity<Iterable<Player>> findAllPlayersByteam_id(Long teamId) {
+        return new ResponseEntity<>(playerRepository.findAllPlayersByteam_id(teamId), HttpStatus.OK);
     }
 
     @CachePut("playerCache")

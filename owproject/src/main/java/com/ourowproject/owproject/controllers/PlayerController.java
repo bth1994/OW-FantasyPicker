@@ -30,8 +30,8 @@ public class PlayerController {
     }
 
     @RequestMapping(value = "/players/{teamId}/team", method = RequestMethod.GET)
-    public ResponseEntity<Iterable<Player>> getAllPlayersByTeamId(@PathVariable Long teamId){
-        return playerService.getAllPlayersByTeamId(teamId);
+    public ResponseEntity<Iterable<Player>> findAllPlayersByteam_id(@PathVariable Long teamId){
+        return playerService.findAllPlayersByteam_id(teamId);
     }
 
     @RequestMapping(value = "/players", method = RequestMethod.POST)
