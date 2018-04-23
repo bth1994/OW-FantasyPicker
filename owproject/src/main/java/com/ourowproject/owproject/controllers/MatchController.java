@@ -19,8 +19,23 @@ public class MatchController {
         this.matchService = matchService;
     }
 
+    @RequestMapping(value = "/matches", method = RequestMethod.GET)
+    public ResponseEntity<Iterable<Match>> getAllMatches(){
+        return matchService.getAllMatches();
+    }
+
     @RequestMapping(value = "/matches/{matchId}", method = RequestMethod.GET)
     public ResponseEntity<Match> getMatchById(@PathVariable Long matchId){
         return matchService.getMatchById(matchId);
+    }
+
+    @RequestMapping(value = "/matches", method = RequestMethod.POST)
+    public ResponseEntity<Match> createMatch(Match match){
+        return matchService.createMatch(match);
+    }
+
+    @RequestMapping(value = "/matches", method = RequestMethod.PUT)
+    public ResponseEntity<Match> updateMatch(Match match){
+        return matchService.updateMatch(match);
     }
 }
