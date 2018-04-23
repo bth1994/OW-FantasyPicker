@@ -26,16 +26,17 @@ public class UserService {
         return new ResponseEntity<>(userRepository.findUserById(userId), HttpStatus.OK);
     }
 
-    public ResponseEntity<Long> getStreakByUser(Long userId) {
+    public ResponseEntity<Long> getCurrentStreakByUserId(Long userId) {
         return new ResponseEntity<>(userRepository.findUserById(userId).getCurrentStreak(), HttpStatus.OK);
     }
 
-    public ResponseEntity<Long> getBestStreakByUser(Long userId) {
+    public ResponseEntity<Long> getBestStreakByUserId(Long userId) {
         return new ResponseEntity<>(userRepository.findUserById(userId).getBestStreak(), HttpStatus.OK);
     }
 
     public ResponseEntity<User> createUser(User user) {
-        return new ResponseEntity<>(userRepository.save(user), HttpStatus.CREATED);
+        user = userRepository.save(user);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
     public ResponseEntity<User> updateUser(User user) {
