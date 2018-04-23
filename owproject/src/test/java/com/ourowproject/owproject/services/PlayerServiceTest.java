@@ -1,6 +1,8 @@
 package com.ourowproject.owproject.services;
 
+import com.ourowproject.owproject.entities.Match;
 import com.ourowproject.owproject.entities.Player;
+import com.ourowproject.owproject.entities.Team;
 import com.ourowproject.owproject.repositories.PlayerRepository;
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 
+import static java.util.Collections.singletonList;
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
@@ -27,6 +30,7 @@ public class PlayerServiceTest {
     private PlayerService playerService;
 
     private Player testPlayer;
+    private Team testTeam;
 
     @Before
     public void init() {
@@ -34,6 +38,9 @@ public class PlayerServiceTest {
         testPlayer = new Player();
         testPlayer.setId(1L);
         testPlayer.setTeam_id(5L);
+
+        testTeam = new Team();
+        testTeam.setId(2L);
     }
 
     @Test
@@ -59,7 +66,13 @@ public class PlayerServiceTest {
 
     @Test
     public void getAllPlayersByTeamIdTest() {
+        Iterable<Player> playerList = singletonList(testPlayer);
+        when(playerRepository.findAllPlayersByteam_id(isA(Long.class))).thenReturn(playerList);
 
+        ResponseEntity<Iterable<Player>> expected = new ResponseEntity<>(playerList, OK);
+        ResponseEntity<Iterable<Player>> actual = playerService.findAllPlayersByteam_id(testTeam.getId());
+
+        Assert.assertEquals(expected, actual);
     }
 
     @Test

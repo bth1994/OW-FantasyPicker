@@ -17,14 +17,10 @@ import org.springframework.stereotype.Service;
 public class ChoiceService {
 
     private ChoiceRepository choiceRepository;
-    private MatchRepository matchRepository;
-    private UserRepository userRepository;
 
     @Autowired
-    public ChoiceService(ChoiceRepository choiceRepository, MatchRepository matchRepository, UserRepository userRepository) {
+    public ChoiceService(ChoiceRepository choiceRepository) {
         this.choiceRepository = choiceRepository;
-        this.matchRepository = matchRepository;
-        this.userRepository = userRepository;
     }
 
     @Cacheable("allChoiceCache")
@@ -33,13 +29,17 @@ public class ChoiceService {
         return new ResponseEntity<>(choiceRepository.findAll(), HttpStatus.OK);
     }
 
-//    public ResponseEntity<Iterable<Choice>> getAllChoicesByMatch_id(Long match_id) {
-//        return new ResponseEntity<>(choiceRepository.getAllChoicesByMatch_id(match_id), HttpStatus.OK);
-//    }
+    @Cacheable("allMatchChoiceCache")
+    @CacheEvict(value = "choiceCache", allEntries = true)
+    public ResponseEntity<Iterable<Choice>> getAllChoicesBymatch_id(Long match_id) {
+        return new ResponseEntity<>(choiceRepository.getAllChoicesBymatch_id(match_id), HttpStatus.OK);
+    }
 
-//    public ResponseEntity<Iterable<Choice>> getAllChoicesByUser_id(Long userId) {
-//        return new
-//    }
+    @Cacheable("allUserChoiceCache")
+    @CacheEvict(value = "choiceCache", allEntries = true)
+    public ResponseEntity<Iterable<Choice>> getAllChoicesByuser_id(Long userId) {
+        return new ResponseEntity<>(choiceRepository.getAllChoicesByuser_id(userId), HttpStatus.OK);
+    }
 
     @Cacheable("choiceCache")
     public ResponseEntity<Choice> getChoiceById(Long choiceId) {

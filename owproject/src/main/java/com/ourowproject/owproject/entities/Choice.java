@@ -13,6 +13,7 @@ public class Choice {
     @Column(name = "CHOICE_ID")
     private Long id;
 
+
     @Column(name = "SELECTION")
     private Long selection;
 
