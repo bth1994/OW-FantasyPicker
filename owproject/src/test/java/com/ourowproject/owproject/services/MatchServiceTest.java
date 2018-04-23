@@ -1,6 +1,7 @@
 package com.ourowproject.owproject.services;
 
 import com.ourowproject.owproject.entities.Match;
+import com.ourowproject.owproject.entities.Team;
 import com.ourowproject.owproject.repositories.MatchRepository;
 import com.ourowproject.owproject.utilities.Status;
 import org.junit.Assert;
@@ -28,6 +29,7 @@ public class MatchServiceTest {
     @InjectMocks
     private MatchService matchService;
 
+    private Team testTeam;
     private Match testMatch;
 
     @Before
@@ -37,6 +39,9 @@ public class MatchServiceTest {
         testMatch.setId(1L);
         testMatch.setDate("4/23/2018");
         testMatch.setStatus(Status.COMPLETE);
+
+        testTeam = new Team();
+        testTeam.setId(2L);
     }
 
     @Test
@@ -46,6 +51,28 @@ public class MatchServiceTest {
 
         ResponseEntity<Iterable<Match>> expected = new ResponseEntity<>(matchList, OK);
         ResponseEntity<Iterable<Match>> actual = matchService.getAllMatches();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void findAllByteam_1_idTest() {
+        Iterable<Match> matchList = singletonList(testMatch);
+        when(matchRepository.findAllByteam1_id(isA(Long.class))).thenReturn(matchList);
+
+        ResponseEntity<Iterable<Match>> expected = new ResponseEntity<>(matchList, OK);
+        ResponseEntity<Iterable<Match>> actual = matchService.findAllByteam_1_id(testTeam.getId());
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void findAllByteam_2_idTest() {
+        Iterable<Match> matchList = singletonList(testMatch);
+        when(matchRepository.findAllByteam2_id(isA(Long.class))).thenReturn(matchList);
+
+        ResponseEntity<Iterable<Match>> expected = new ResponseEntity<>(matchList, OK);
+        ResponseEntity<Iterable<Match>> actual = matchService.findAllByteam2_id(testTeam.getId());
 
         Assert.assertEquals(expected, actual);
     }

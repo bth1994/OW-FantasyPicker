@@ -27,14 +27,14 @@ public class MatchService {
         return new ResponseEntity<>(matchRepository.findAll(), HttpStatus.OK);
     }
 
-//    TODO: Figure out why this won't work
-//    public ResponseEntity<Iterable<Match>> findAllByTeam_1_id(Long team1_id) {
-//        return new ResponseEntity<>(matchRepository.findAllByTeam1_id(team1_id));
-//    }
+//  TODO: Figure out why this won't work
+    public ResponseEntity<Iterable<Match>> findAllByteam_1_id(Long team1_id) {
+        return new ResponseEntity<>(matchRepository.findAllByteam1_id(team1_id), HttpStatus.OK);
+    }
 
-//    public ResponseEntity<Iterable<Match>> findAllByTeam2_id(Long team2_id) {
-//        return new ResponseEntity<>(matchRepository.findAllByTeam2_id(Long team2_id));
-//    }
+    public ResponseEntity<Iterable<Match>> findAllByteam2_id(Long team2_id) {
+        return new ResponseEntity<>(matchRepository.findAllByteam2_id(team2_id), HttpStatus.OK);
+    }
 
     public ResponseEntity<Iterable<Match>> findAllByDate(String date) {
         return new ResponseEntity<>(matchRepository.findAllByDate(date), HttpStatus.OK);
