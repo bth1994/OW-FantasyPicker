@@ -29,5 +29,12 @@ public class PlayerService {
         return new ResponseEntity<>(playerRepository.findAllPlayersByTeamId(teamId), HttpStatus.OK);
     }
 
-    //public ResponseEntity<Player>
+    public ResponseEntity<Player> createPlayer(Player player) {
+        return new ResponseEntity<>(playerRepository.save(player), HttpStatus.CREATED);
+    }
+
+    public ResponseEntity<Player> updatePlayer(Player player) {
+        return new ResponseEntity<>(playerRepository.save(player), HttpStatus.OK);
+    }
+
 }
