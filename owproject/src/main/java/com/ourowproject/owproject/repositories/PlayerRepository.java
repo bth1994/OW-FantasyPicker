@@ -4,5 +4,6 @@ import com.ourowproject.owproject.entities.Player;
 import org.springframework.data.repository.CrudRepository;
 
 public interface PlayerRepository extends CrudRepository<Player, Long>{
-
+    Player findPlayerById(Long playerId);
+    Iterable<Player> findAllPlayersByTeamId(Long teamId);
 }
