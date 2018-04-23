@@ -50,7 +50,7 @@ public class ChoiceService {
     public ResponseEntity<Choice> createChoice(Choice choice) {
         return new ResponseEntity<>(choiceRepository.save(choice), HttpStatus.CREATED);
     }
-    
+
     @CachePut("choiceCache")
     public ResponseEntity<Choice> updateChoice(Choice choice) {
         return new ResponseEntity<>(choiceRepository.save(choice), HttpStatus.OK);
