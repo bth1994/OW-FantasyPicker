@@ -15,11 +15,11 @@ public class User {
     @Column(name = "USER_ID")
     private Long id;
 
-    @Column(name = "EMAIL")
-    private String email;
-
     @Column(name = "USERNAME")
     private String userName;
+
+    @Column(name = "EMAIL")
+    private String email;
 
     @Column(name = "PASSWORD")
     private String password;

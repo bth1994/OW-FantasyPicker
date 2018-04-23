@@ -1,9 +1,6 @@
 package com.ourowproject.owproject.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Player {
@@ -19,7 +16,8 @@ public class Player {
     @Column(name = "SLUG")
     private String slug;
 
-    @Column(name = "TEAM_ID")
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID")
     private Long team_id;
 
     public Long getId() {

@@ -2,6 +2,7 @@ package com.ourowproject.owproject.services;
 
 import com.ourowproject.owproject.entities.Match;
 import com.ourowproject.owproject.repositories.MatchRepository;
+import com.ourowproject.owproject.utilities.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -24,6 +25,23 @@ public class MatchService {
     @CacheEvict(value = "matchesCache", allEntries = true)
     public ResponseEntity<Iterable<Match>> getAllMatches() {
         return new ResponseEntity<>(matchRepository.findAll(), HttpStatus.OK);
+    }
+
+//    TODO: Figure out why this won't work
+//    public ResponseEntity<Iterable<Match>> findAllByTeam_1_id(Long team1_id) {
+//        return new ResponseEntity<>(matchRepository.findAllByTeam1_id(team1_id));
+//    }
+
+//    public ResponseEntity<Iterable<Match>> findAllByTeam2_id(Long team2_id) {
+//        return new ResponseEntity<>(matchRepository.findAllByTeam2_id(Long team2_id));
+//    }
+
+    public ResponseEntity<Iterable<Match>> findAllByDate(String date) {
+        return new ResponseEntity<>(matchRepository.findAllByDate(date), HttpStatus.OK);
+    }
+
+    public ResponseEntity<Iterable<Match>> findAllByStatus(Status status) {
+        return new ResponseEntity<>(matchRepository.findAllByStatus(status), HttpStatus.OK);
     }
 
     @Cacheable("matchesCache")

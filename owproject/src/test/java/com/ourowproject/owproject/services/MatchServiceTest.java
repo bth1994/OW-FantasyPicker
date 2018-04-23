@@ -2,6 +2,7 @@ package com.ourowproject.owproject.services;
 
 import com.ourowproject.owproject.entities.Match;
 import com.ourowproject.owproject.repositories.MatchRepository;
+import com.ourowproject.owproject.utilities.Status;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 
+import static java.util.Collections.singletonList;
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
@@ -33,6 +35,8 @@ public class MatchServiceTest {
         MockitoAnnotations.initMocks(this);
         testMatch = new Match();
         testMatch.setId(1L);
+        testMatch.setDate("4/23/2018");
+        testMatch.setStatus(Status.COMPLETE);
     }
 
     @Test
@@ -42,6 +46,28 @@ public class MatchServiceTest {
 
         ResponseEntity<Iterable<Match>> expected = new ResponseEntity<>(matchList, OK);
         ResponseEntity<Iterable<Match>> actual = matchService.getAllMatches();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void findAllByDateTest() {
+        Iterable<Match> matchList = singletonList(testMatch);
+        when(matchRepository.findAllByDate(isA(String.class))).thenReturn(matchList);
+
+        ResponseEntity<Iterable<Match>> expected = new ResponseEntity<>(matchList, OK);
+        ResponseEntity<Iterable<Match>> actual = matchService.findAllByDate(testMatch.getDate());
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void findAllByStatusTest() {
+        Iterable<Match> matchList = singletonList(testMatch);
+        when(matchRepository.findAllByStatus(isA(Status.class))).thenReturn(matchList);
+
+        ResponseEntity<Iterable<Match>> expected = new ResponseEntity<>(matchList, OK);
+        ResponseEntity<Iterable<Match>> actual = matchService.findAllByStatus(Status.COMPLETE);
 
         Assert.assertEquals(expected, actual);
     }
