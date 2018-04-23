@@ -16,8 +16,11 @@ public class Team {
     @Column(name = "TEAM_NAME")
     private String name;
 
-    @Column(name = "RECORD")
-    private String record;
+    @Column(name = "WIN_RECORD")
+    private Long winRecord;
+
+    @Column(name = "LOSS_RECORD")
+    private Long lossRecord;
 
     public Long getId() {
         return id;
@@ -35,11 +38,19 @@ public class Team {
         this.name = name;
     }
 
-    public String getRecord() {
-        return record;
+    public Long getWinRecord() {
+        return winRecord;
     }
 
-    public void setRecord(String record) {
-        this.record = record;
+    public void setWinRecord(Long winRecord) {
+        this.winRecord = winRecord;
+    }
+
+    public Long getLossRecord() {
+        return lossRecord;
+    }
+
+    public void setLossRecord(Long lossRecord) {
+        this.lossRecord = lossRecord;
     }
 }

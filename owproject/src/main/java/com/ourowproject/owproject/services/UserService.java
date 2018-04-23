@@ -12,11 +12,28 @@ public class UserService {
     private UserRepository userRepository;
 
     public ResponseEntity<Iterable<User>> getAllUsers() {
-        return new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
+        //return new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
+        return null;
     }
 
-//    public ResponseEntity<Long> getStreakByUser(Long userId) {
-//        return new ResponseEntity<>(userRepository.findById(userId))
-//    }
+    public ResponseEntity<User> getUserById(Long userId) {
+        return null;
+    }
 
+    public ResponseEntity<Long> getStreakByUser(Long userId) {
+        //return new ResponseEntity<>(userRepository.findById(userId))
+        return null;
+    }
+
+    public ResponseEntity<Long> getBestStreakByUser(Long userId) {
+        return null;
+    }
+
+    public ResponseEntity<User> createUser(User user) {
+        return null;
+    }
+
+    public ResponseEntity<User> updateUser(User user) {
+        return null;
+    }
 }
