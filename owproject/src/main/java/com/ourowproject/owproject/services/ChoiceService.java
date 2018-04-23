@@ -6,6 +6,9 @@ import com.ourowproject.owproject.repositories.ChoiceRepository;
 import com.ourowproject.owproject.repositories.MatchRepository;
 import com.ourowproject.owproject.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -24,6 +27,8 @@ public class ChoiceService {
         this.userRepository = userRepository;
     }
 
+    @Cacheable("allChoiceCache")
+    @CacheEvict(value = "choiceCache", allEntries = true)
     public ResponseEntity<Iterable<Choice>> getAllChoices() {
         return new ResponseEntity<>(choiceRepository.findAll(), HttpStatus.OK);
     }
@@ -36,15 +41,17 @@ public class ChoiceService {
 //        return new
 //    }
 
-
+    @Cacheable("choiceCache")
     public ResponseEntity<Choice> getChoiceById(Long choiceId) {
         return new ResponseEntity<>(choiceRepository.findChoiceById(choiceId), HttpStatus.OK);
     }
 
+    @CachePut("choiceCache")
     public ResponseEntity<Choice> createChoice(Choice choice) {
         return new ResponseEntity<>(choiceRepository.save(choice), HttpStatus.CREATED);
     }
-
+    
+    @CachePut("choiceCache")
     public ResponseEntity<Choice> updateChoice(Choice choice) {
         return new ResponseEntity<>(choiceRepository.save(choice), HttpStatus.OK);
     }
