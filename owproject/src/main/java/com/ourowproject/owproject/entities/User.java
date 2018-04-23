@@ -15,6 +15,9 @@ public class User {
     @Column(name = "USER_ID")
     private Long id;
 
+    @Column(name = "EMAIL")
+    private String email;
+
     @Column(name = "USERNAME")
     private String userName;
 
@@ -33,6 +36,14 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getUserName() {
