@@ -17,10 +17,9 @@ public class Player {
 
     @Column(name = "SLUG")
     private String slug;
-
-    @ManyToOne
-    @JoinColumn(name = "TEAM_ID")
-    private Team teamID;
+    
+    @Column(name = "TEAM_ID")
+    private Long teamID;
 
     public Long getId() {
         return id;
@@ -54,11 +53,11 @@ public class Player {
         this.slug = slug;
     }
 
-    public Team getTeamID() {
+    public Long getTeamID() {
         return teamID;
     }
 
-    public void setTeamID(Team teamID) {
+    public void setTeamID(Long teamID) {
         this.teamID = teamID;
     }
 }
