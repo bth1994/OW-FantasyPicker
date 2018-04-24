@@ -32,7 +32,7 @@ public class MatchController {
     }
 
     @RequestMapping(value = "/matches", method = RequestMethod.PUT)
-    public ResponseEntity<Match> updateMatch(Match match){
+    public ResponseEntity<Match> updateMatch(@RequestBody Match match){
         return matchService.updateMatch(match);
     }
 }
