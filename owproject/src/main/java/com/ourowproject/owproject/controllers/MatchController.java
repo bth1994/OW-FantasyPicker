@@ -4,10 +4,7 @@ import com.ourowproject.owproject.entities.Match;
 import com.ourowproject.owproject.services.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class MatchController {
@@ -30,7 +27,7 @@ public class MatchController {
     }
 
     @RequestMapping(value = "/matches", method = RequestMethod.POST)
-    public ResponseEntity<Match> createMatch(Match match){
+    public ResponseEntity<Match> createMatch(@RequestBody Match match){
         return matchService.createMatch(match);
     }
 

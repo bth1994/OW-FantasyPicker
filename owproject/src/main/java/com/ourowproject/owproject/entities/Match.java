@@ -5,6 +5,7 @@ import com.ourowproject.owproject.utilities.Status;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "owlmatch")
 public class Match {
 
     @Id
