@@ -4,10 +4,7 @@ import com.ourowproject.owproject.entities.Team;
 import com.ourowproject.owproject.services.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class TeamController {
@@ -30,12 +27,12 @@ public class TeamController {
     }
 
     @RequestMapping(value = "/teams", method = RequestMethod.POST)
-    public ResponseEntity<Team> createTeam(Team team){
+    public ResponseEntity<Team> createTeam(@RequestBody Team team){
         return teamService.createTeam(team);
     }
 
     @RequestMapping(value = "/teams", method = RequestMethod.PUT)
-    public ResponseEntity<Team> updateTeam(Team team){
+    public ResponseEntity<Team> updateTeam(@RequestBody Team team){
         return teamService.updateTeam(team);
     }
 
