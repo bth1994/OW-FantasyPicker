@@ -9,8 +9,11 @@ import javax.persistence.Id;
 public class Team {
 
     @Id
-    @Column(name = "TEAM_ID")
+    @GeneratedValue
     private Long id;
+
+    @Column(name = "TEAM_ID")
+    private Long teamID;
 
     @Column(name = "TEAM_NAME")
     private String name;
@@ -27,6 +30,14 @@ public class Team {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getTeamID() {
+        return teamID;
+    }
+
+    public void setTeamID(Long teamID) {
+        this.teamID = teamID;
     }
 
     public String getName() {

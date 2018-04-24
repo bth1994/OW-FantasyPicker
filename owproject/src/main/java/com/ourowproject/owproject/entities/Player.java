@@ -6,6 +6,9 @@ import javax.persistence.*;
 public class Player {
 
     @Id
+    @GeneratedValue
+    private Long id;
+
     @Column(name = "PLAYER_ID")
     private Long playerID;
 
@@ -19,12 +22,20 @@ public class Player {
     @JoinColumn(name = "TEAM_ID")
     private Team teamID;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Long getPlayerID() {
         return playerID;
     }
 
-    public void setPlayerID(Long id) {
-        this.playerID = id;
+    public void setPlayerID(Long playerID) {
+        this.playerID = playerID;
     }
 
     public String getName() {
@@ -43,11 +54,11 @@ public class Player {
         this.slug = slug;
     }
 
-    public Team getTeam_id() {
+    public Team getTeamID() {
         return teamID;
     }
 
-    public void setTeam_id(Team team_id) {
-        this.teamID = team_id;
+    public void setTeamID(Team teamID) {
+        this.teamID = teamID;
     }
 }
