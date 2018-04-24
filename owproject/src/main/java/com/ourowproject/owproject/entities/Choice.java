@@ -1,9 +1,6 @@
 package com.ourowproject.owproject.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Choice {
@@ -18,10 +15,11 @@ public class Choice {
     private Long selection;
 
     @Column(name = "MATCH_ID")
-    private Long match_id;
+    private Long matchID;
 
-    @Column(name = "PROFILE_ID")
-    private Long profile_id;
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User userID;
 
     public Long getId() {
         return id;
@@ -39,19 +37,19 @@ public class Choice {
         this.selection = selection;
     }
 
-    public Long getMatch_id() {
-        return match_id;
+    public Long getMatchID() {
+        return matchID;
     }
 
     public void setMatch_id(Long match_id) {
-        this.match_id = match_id;
+        this.matchID = match_id;
     }
 
-    public Long getProfile_id() {
-        return profile_id;
+    public User getProfile_id() {
+        return userID;
     }
 
-    public void setProfile_id(Long profile_id) {
-        this.profile_id = profile_id;
+    public void setProfile_id(User userID) {
+        this.userID = userID;
     }
 }

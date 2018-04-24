@@ -30,13 +30,13 @@ public class MatchService {
     @Cacheable("allMatchesCache")
     @CacheEvict(value = "matchesCache", allEntries = true)
     public ResponseEntity<Iterable<Match>> findAllByteam_1_id(Long team1_id) {
-        return new ResponseEntity<>(matchRepository.findAllByteam1_id(team1_id), HttpStatus.OK);
+        return new ResponseEntity<>(matchRepository.findAllByteam1ID(team1_id), HttpStatus.OK);
     }
 
     @Cacheable("allMatchesCache")
     @CacheEvict(value = "matchesCache", allEntries = true)
     public ResponseEntity<Iterable<Match>> findAllByteam2_id(Long team2_id) {
-        return new ResponseEntity<>(matchRepository.findAllByteam2_id(team2_id), HttpStatus.OK);
+        return new ResponseEntity<>(matchRepository.findAllByteam2ID(team2_id), HttpStatus.OK);
     }
 
     @Cacheable("allMatchesCache")
@@ -53,7 +53,7 @@ public class MatchService {
 
     @Cacheable("matchesCache")
     public ResponseEntity<Match> getMatchById(Long matchId) {
-        return new ResponseEntity<>(matchRepository.findMatchById(matchId), HttpStatus.OK);
+        return new ResponseEntity<>(matchRepository.findMatchBymatchID(matchId), HttpStatus.OK);
     }
 
     @CachePut("matchesCache")
