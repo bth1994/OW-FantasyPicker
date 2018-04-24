@@ -10,6 +10,8 @@ public class Match {
 
     @Id
     @GeneratedValue
+    private Long id;
+
     @Column(name = "MATCH_ID")
     private Long matchID;
 
@@ -28,6 +30,14 @@ public class Match {
 
     @Column(name = "DATE")
     private String date;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Long getMatchID() {
         return matchID;
