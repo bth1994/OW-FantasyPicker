@@ -8,7 +8,7 @@ public class Player {
     @Id
     @GeneratedValue
     @Column(name = "PLAYER_ID")
-    private Long id;
+    private Long playerID;
 
     @Column(name = "PLAYER_NAME")
     private String name;
@@ -18,14 +18,14 @@ public class Player {
 
     @ManyToOne
     @JoinColumn(name = "TEAM_ID")
-    private Team team_id;
+    private Team teamID;
 
-    public Long getId() {
-        return id;
+    public Long getPlayerID() {
+        return playerID;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPlayerID(Long id) {
+        this.playerID = id;
     }
 
     public String getName() {
@@ -45,10 +45,10 @@ public class Player {
     }
 
     public Team getTeam_id() {
-        return team_id;
+        return teamID;
     }
 
     public void setTeam_id(Team team_id) {
-        this.team_id = team_id;
+        this.teamID = team_id;
     }
 }
