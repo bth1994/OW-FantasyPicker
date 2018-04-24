@@ -123,8 +123,4 @@ public class UserControllerTest {
                 .content(body)).andExpect(status().isOk());
     }
 
-    @Test
-    public void deleteUserTest() throws Exception {
-
-    }
 }

@@ -18,13 +18,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+
 import static java.util.Collections.singletonList;
 import static org.mockito.ArgumentMatchers.isA;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -75,5 +76,30 @@ public class TeamControllerTest {
         verify(teamService, times(1)).getTeamById(1L);
     }
 
+    @Test
+    public void createTeamTest() throws Exception {
+        Team testTeam = new Team();
+        testTeam.setId(2L);
+        testTeam.setName("What");
+        testTeam.setLossRecord(14L);
+        testTeam.setWinRecord(13L);
+        String body = mapper.writeValueAsString(testTeam);
+        when(teamService.createTeam(testTeam)).thenReturn(mock(ResponseEntity.class));
+        mockMvc.perform(post("/teams").contentType(MediaType.APPLICATION_JSON)
+                .content(body)).andExpect(status().isOk());
+    }
 
+    @Test
+    public void updateTeamTest() throws Exception {
+        Team testTeam1 = new Team();
+        testTeam1.setId(3L);
+        testTeam1.setName("What up");
+        testTeam1.setLossRecord(14L);
+        testTeam1.setWinRecord(13L);
+        String body = mapper.writeValueAsString(mockTeam);
+        ResponseEntity<Team> expectedResponse = new ResponseEntity<>(mockTeam, OK);
+        when(teamService.updateTeam(testTeam1)).thenReturn(expectedResponse);
+        mockMvc.perform(put("/teams").contentType(MediaType.APPLICATION_JSON)
+            .content(body)).andExpect(status().isOk());
+    }
 }
