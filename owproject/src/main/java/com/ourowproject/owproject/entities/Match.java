@@ -9,7 +9,6 @@ import javax.persistence.*;
 public class Match {
 
     @Id
-    @GeneratedValue
     @Column(name = "MATCH_ID")
     private Long matchID;
 

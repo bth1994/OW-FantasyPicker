@@ -6,7 +6,6 @@ import javax.persistence.*;
 public class Player {
 
     @Id
-    @GeneratedValue
     @Column(name = "PLAYER_ID")
     private Long playerID;
 
