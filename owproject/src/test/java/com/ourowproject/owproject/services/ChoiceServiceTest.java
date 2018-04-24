@@ -41,7 +41,7 @@ public class ChoiceServiceTest {
         testChoice.setId(1L);
 
         testMatch = new Match();
-        testMatch.setId(2L);
+        testMatch.setMatchID(2L);
 
         testUser = new User();
         testUser.setId(3L);
@@ -61,10 +61,10 @@ public class ChoiceServiceTest {
     @Test
     public void getAllChoicesBymatch_idTest() {
         Iterable<Choice> choiceList = singletonList(testChoice);
-        when(choiceRepository.getAllChoicesBymatch_id(isA(Long.class))).thenReturn(choiceList);
+        when(choiceRepository.getAllChoicesBymatchID(isA(Long.class))).thenReturn(choiceList);
 
         ResponseEntity<Iterable<Choice>> expected = new ResponseEntity<>(choiceList, OK);
-        ResponseEntity<Iterable<Choice>> actual = choiceService.getAllChoicesBymatch_id(testMatch.getId());
+        ResponseEntity<Iterable<Choice>> actual = choiceService.getAllChoicesBymatch_id(testMatch.getMatchID());
 
         Assert.assertEquals(expected, actual);
     }
@@ -72,10 +72,10 @@ public class ChoiceServiceTest {
     @Test
     public void getAllChoicesByuser_id() {
         Iterable<Choice> choiceList = singleton(testChoice);
-        when(choiceRepository.getAllChoicesByuser_id(isA(Long.class))).thenReturn(choiceList);
+        when(choiceRepository.getAllChoicesByuserID(isA(Long.class))).thenReturn(choiceList);
 
         ResponseEntity<Iterable<Choice>> expected = new ResponseEntity<>(choiceList, OK);
-        ResponseEntity<Iterable<Choice>> actual = choiceService.getAllChoicesByprofile_id(testUser.getId());
+        ResponseEntity<Iterable<Choice>> actual = choiceService.getAllChoicesByuser(testUser.getId());
 
         Assert.assertEquals(expected, actual);
     }
