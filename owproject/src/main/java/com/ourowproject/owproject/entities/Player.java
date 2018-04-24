@@ -17,7 +17,7 @@ public class Player {
 
     @Column(name = "SLUG")
     private String slug;
-    
+
     @Column(name = "TEAM_ID")
     private Long teamID;
 

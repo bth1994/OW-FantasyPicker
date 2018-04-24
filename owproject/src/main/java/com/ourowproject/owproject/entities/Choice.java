@@ -17,9 +17,8 @@ public class Choice {
     @Column(name = "MATCH_ID")
     private Long matchID;
 
-    @ManyToOne
-    @JoinColumn(name = "USER_ID")
-    private User userID;
+    @Column(name = "USER_ID")
+    private Long userID;
 
     public Long getId() {
         return id;
@@ -41,15 +40,15 @@ public class Choice {
         return matchID;
     }
 
-    public void setMatch_id(Long match_id) {
-        this.matchID = match_id;
+    public void setMatchID(Long matchID) {
+        this.matchID = matchID;
     }
 
-    public User getProfile_id() {
+    public Long getUserID() {
         return userID;
     }
 
-    public void setProfile_id(User userID) {
+    public void setUserID(Long userID) {
         this.userID = userID;
     }
 }
