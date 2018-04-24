@@ -37,7 +37,7 @@ public class ChoiceService {
 
     @Cacheable("allChoiceCache")
     @CacheEvict(value = "choiceCache", allEntries = true)
-    public ResponseEntity<Iterable<Choice>> getAllChoicesByuser_id(Long userId) {
+    public ResponseEntity<Iterable<Choice>> getAllChoicesByprofile_id(Long userId) {
         return new ResponseEntity<>(choiceRepository.getAllChoicesByuser_id(userId), HttpStatus.OK);
     }
 

@@ -75,7 +75,7 @@ public class ChoiceServiceTest {
         when(choiceRepository.getAllChoicesByuser_id(isA(Long.class))).thenReturn(choiceList);
 
         ResponseEntity<Iterable<Choice>> expected = new ResponseEntity<>(choiceList, OK);
-        ResponseEntity<Iterable<Choice>> actual = choiceService.getAllChoicesByuser_id(testUser.getId());
+        ResponseEntity<Iterable<Choice>> actual = choiceService.getAllChoicesByprofile_id(testUser.getId());
 
         Assert.assertEquals(expected, actual);
     }

@@ -18,7 +18,7 @@ public class Player {
 
     @ManyToOne
     @JoinColumn(name = "TEAM_ID")
-    private Long team_id;
+    private Team team_id;
 
     public Long getId() {
         return id;
@@ -44,11 +44,11 @@ public class Player {
         this.slug = slug;
     }
 
-    public Long getTeam_id() {
+    public Team getTeam_id() {
         return team_id;
     }
 
-    public void setTeam_id(Long team_id) {
+    public void setTeam_id(Team team_id) {
         this.team_id = team_id;
     }
 }
