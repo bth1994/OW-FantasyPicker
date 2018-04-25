@@ -1,20 +1,31 @@
 package com.ourowproject.owproject.dtos;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
+import java.util.regex.Pattern;
 
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class PandaMatch {
-    public int id;
-    public String name;
-    public String begin_at;
-    public List<Opponent> opponents;
-    public List<Result> results;
 
-    public PandaMatch(int id, String name, String begin_at, List<Opponent> opponents, List<Result> results) {
+    @JsonProperty("id") public int id;
+    @JsonProperty("begin_at") public String date;
+    @JsonProperty("opponents") public Iterable teams;
+    public int opponent1;
+    public int opponent2;
+
+    @JsonCreator
+    public PandaMatch(@JsonProperty("id") int id, @JsonProperty("begin_at") String date, @JsonProperty("opponents") Iterable teams){
         this.id = id;
-        this.name = name;
-        this.begin_at = begin_at;
-        this.opponents = opponents;
-        this.results = results;
+        this.date = date;
+        this.teams = teams;
+//        Iterator iterator = teams.iterator();
     }
 
     public int getId() {
@@ -25,35 +36,35 @@ public class PandaMatch {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getDate() {
+        return date;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public String getBegin_at() {
-        return begin_at;
+    public Iterable getTeams() {
+        return teams;
     }
 
-    public void setBegin_at(String begin_at) {
-        this.begin_at = begin_at;
+    public void setTeams(Iterable teams) {
+        this.teams = teams;
     }
 
-    public List<Opponent> getOpponents() {
-        return opponents;
+    public int getOpponent1() {
+        return opponent1;
     }
 
-    public void setOpponents(List<Opponent> opponents) {
-        this.opponents = opponents;
+    public void setOpponent1(int opponent1) {
+        this.opponent1 = opponent1;
     }
 
-    public List<Result> getResults() {
-        return results;
+    public int getOpponent2() {
+        return opponent2;
     }
 
-    public void setResults(List<Result> results) {
-        this.results = results;
+    public void setOpponent2(int opponent2) {
+        this.opponent2 = opponent2;
     }
 }

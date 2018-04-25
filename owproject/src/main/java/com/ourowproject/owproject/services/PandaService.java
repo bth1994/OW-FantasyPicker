@@ -19,4 +19,11 @@ public class PandaService {
         System.out.println(result);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    public ResponseEntity<PandaMatch> getTestMatch() {
+        RestTemplate restTemplate = new RestTemplate();
+        String uri = "https://api.pandascore.co/ow/matches/20502?token=KkzVUEMJ_pTaGQvbtRQo7YQewGzIauH1XqUEWwuRC-KQVQWg8U0";
+        PandaMatch result = restTemplate.getForObject(uri, PandaMatch.class);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 }

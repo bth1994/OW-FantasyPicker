@@ -1,16 +1,19 @@
 package com.ourowproject.owproject.dtos;
 
-public class Opponent {
-    public int id;
-    public String name;
-    public String acronym;
-    public String image_url;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-    public Opponent(int id, String name, String acronym, String image_url) {
+@JsonIgnoreProperties(ignoreUnknown=true)
+public class Opponent {
+
+    @JsonProperty("id") public int id;
+    @JsonProperty("name") public String name;
+
+    @JsonCreator
+    public Opponent(@JsonProperty("id") int id, @JsonProperty("name") String name) {
         this.id = id;
         this.name = name;
-        this.acronym = acronym;
-        this.image_url = image_url;
     }
 
     public int getId() {
@@ -29,19 +32,4 @@ public class Opponent {
         this.name = name;
     }
 
-    public String getAcronym() {
-        return acronym;
-    }
-
-    public void setAcronym(String acronym) {
-        this.acronym = acronym;
-    }
-
-    public String getImage_url() {
-        return image_url;
-    }
-
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
-    }
 }

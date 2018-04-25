@@ -22,4 +22,9 @@ public class PandaController {
     public ResponseEntity<Iterable<PandaMatch>> getUpcomingMatches(){
         return pandaService.getUpcomingMatches();
     }
+
+    @RequestMapping(value = "/panda/test", method = RequestMethod.GET)
+    public ResponseEntity<PandaMatch> getTestMatch(){
+        return pandaService.getTestMatch();
+    }
 }
