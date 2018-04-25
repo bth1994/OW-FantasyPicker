@@ -36,7 +36,7 @@ public class MatchServiceTest {
     public void init() {
         MockitoAnnotations.initMocks(this);
         testMatch = new Match();
-        testMatch.setId(1L);
+        testMatch.setMatchID(1L);
         testMatch.setDate("4/23/2018");
         testMatch.setStatus(Status.COMPLETE);
 
@@ -58,7 +58,7 @@ public class MatchServiceTest {
     @Test
     public void findAllByteam_1_idTest() {
         Iterable<Match> matchList = singletonList(testMatch);
-        when(matchRepository.findAllByteam1_id(isA(Long.class))).thenReturn(matchList);
+        when(matchRepository.findAllByteam1ID(isA(Long.class))).thenReturn(matchList);
 
         ResponseEntity<Iterable<Match>> expected = new ResponseEntity<>(matchList, OK);
         ResponseEntity<Iterable<Match>> actual = matchService.findAllByteam_1_id(testTeam.getId());
@@ -69,7 +69,7 @@ public class MatchServiceTest {
     @Test
     public void findAllByteam_2_idTest() {
         Iterable<Match> matchList = singletonList(testMatch);
-        when(matchRepository.findAllByteam2_id(isA(Long.class))).thenReturn(matchList);
+        when(matchRepository.findAllByteam2ID(isA(Long.class))).thenReturn(matchList);
 
         ResponseEntity<Iterable<Match>> expected = new ResponseEntity<>(matchList, OK);
         ResponseEntity<Iterable<Match>> actual = matchService.findAllByteam2_id(testTeam.getId());
@@ -101,10 +101,10 @@ public class MatchServiceTest {
 
     @Test
     public void getMatchByIdTest() {
-        when(matchRepository.findMatchById(1L)).thenReturn(testMatch);
+        when(matchRepository.findMatchBymatchID(1L)).thenReturn(testMatch);
 
         ResponseEntity<Match> expected = new ResponseEntity<>(testMatch, OK);
-        ResponseEntity<Match> actual = matchService.getMatchById(testMatch.getId());
+        ResponseEntity<Match> actual = matchService.getMatchById(testMatch.getMatchID());
 
         Assert.assertEquals(expected, actual);
     }

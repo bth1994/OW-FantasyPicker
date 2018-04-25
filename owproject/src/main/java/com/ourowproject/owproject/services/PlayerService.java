@@ -27,12 +27,12 @@ public class PlayerService {
     }
 
     @Cacheable("playerCache")
-    public ResponseEntity<Player> getPlayerById(Long playerId) {
-        return new ResponseEntity<>(playerRepository.findPlayerById(playerId), HttpStatus.OK);
+    public ResponseEntity<Player> getPlayerByplayerID(Long playerId) {
+        return new ResponseEntity<>(playerRepository.findPlayerByplayerID(playerId), HttpStatus.OK);
     }
     @Cacheable("playerCache")
-    public ResponseEntity<Iterable<Player>> getAllPlayersByTeamId(Long teamId) {
-        return new ResponseEntity<>(playerRepository.findAllPlayersByTeamId(teamId), HttpStatus.OK);
+    public ResponseEntity<Iterable<Player>> findAllPlayersByteamID(Long teamId) {
+        return new ResponseEntity<>(playerRepository.findAllPlayersByteamID(teamId), HttpStatus.OK);
     }
 
     @CachePut("playerCache")

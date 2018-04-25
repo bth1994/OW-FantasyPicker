@@ -10,8 +10,10 @@ public class Team {
 
     @Id
     @GeneratedValue
-    @Column(name = "TEAM_ID")
     private Long id;
+
+    @Column(name = "TEAM_ID")
+    private Long teamID;
 
     @Column(name = "TEAM_NAME")
     private String name;
@@ -28,6 +30,14 @@ public class Team {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getTeamID() {
+        return teamID;
+    }
+
+    public void setTeamID(Long teamID) {
+        this.teamID = teamID;
     }
 
     public String getName() {

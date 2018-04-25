@@ -27,26 +27,33 @@ public class MatchService {
         return new ResponseEntity<>(matchRepository.findAll(), HttpStatus.OK);
     }
 
-//  TODO: Figure out why this won't work
+    @Cacheable("allMatchesCache")
+    @CacheEvict(value = "matchesCache", allEntries = true)
     public ResponseEntity<Iterable<Match>> findAllByteam_1_id(Long team1_id) {
-        return new ResponseEntity<>(matchRepository.findAllByteam1_id(team1_id), HttpStatus.OK);
+        return new ResponseEntity<>(matchRepository.findAllByteam1ID(team1_id), HttpStatus.OK);
     }
 
+    @Cacheable("allMatchesCache")
+    @CacheEvict(value = "matchesCache", allEntries = true)
     public ResponseEntity<Iterable<Match>> findAllByteam2_id(Long team2_id) {
-        return new ResponseEntity<>(matchRepository.findAllByteam2_id(team2_id), HttpStatus.OK);
+        return new ResponseEntity<>(matchRepository.findAllByteam2ID(team2_id), HttpStatus.OK);
     }
 
+    @Cacheable("allMatchesCache")
+    @CacheEvict(value = "matchesCache", allEntries = true)
     public ResponseEntity<Iterable<Match>> findAllByDate(String date) {
         return new ResponseEntity<>(matchRepository.findAllByDate(date), HttpStatus.OK);
     }
 
+    @Cacheable("allMatchesCache")
+    @CacheEvict(value = "matchesCache", allEntries = true)
     public ResponseEntity<Iterable<Match>> findAllByStatus(Status status) {
         return new ResponseEntity<>(matchRepository.findAllByStatus(status), HttpStatus.OK);
     }
 
     @Cacheable("matchesCache")
     public ResponseEntity<Match> getMatchById(Long matchId) {
-        return new ResponseEntity<>(matchRepository.findMatchById(matchId), HttpStatus.OK);
+        return new ResponseEntity<>(matchRepository.findMatchBymatchID(matchId), HttpStatus.OK);
     }
 
     @CachePut("matchesCache")
@@ -59,7 +66,4 @@ public class MatchService {
         return new ResponseEntity<>(matchRepository.save(match), HttpStatus.OK);
     }
 
-    /**
-     * To-Do: getMatchesByTeam, getMatchesByDate, getMatchesByStatus
-     */
 }
