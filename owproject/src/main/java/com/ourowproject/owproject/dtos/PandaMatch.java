@@ -31,16 +31,25 @@ public class PandaMatch {
         String tempString = temp.toString();
         Pattern pattern = Pattern.compile("id=(\\d\\d\\d\\d)");
         Matcher matcher = pattern.matcher(tempString);
-        System.out.println(matcher.find());
-        System.out.println(matcher.group().substring(3));
-        opponent1 = Integer.parseInt(matcher.group().substring(3));
+        if (matcher.find()){
+            System.out.println("team1 " + matcher.group().substring(3));
+            opponent1 = Integer.parseInt(matcher.group().substring(3));
+        } else {
+            opponent1 = 0;
+            System.out.println("team2 " + opponent1);
+        }
         Object temp2 = iterator.next();
         String tempString2 = temp2.toString();
         Pattern pattern2 = Pattern.compile("id=(\\d\\d\\d\\d)");
         Matcher matcher2 = pattern2.matcher(tempString2);
-        System.out.println(matcher2.find());
-        System.out.println(matcher2.group().substring(3));
-        opponent2 = Integer.parseInt(matcher2.group().substring(3));
+        System.out.println(id);
+        if (matcher2.find()){
+            System.out.println("team2 " + matcher2.group().substring(3));
+            opponent2 = Integer.parseInt(matcher2.group().substring(3));
+        } else {
+            opponent2 = 0;
+            System.out.println("team2 " + opponent2);
+        }
     }
 
     public int getId() {
