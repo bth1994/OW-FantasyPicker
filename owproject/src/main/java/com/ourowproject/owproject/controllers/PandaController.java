@@ -19,7 +19,7 @@ public class PandaController {
     }
 
     @RequestMapping(value = "/panda/upcomingmatches", method = RequestMethod.GET)
-    public ResponseEntity<Iterable<PandaMatch>> getUpcomingMatches(){
+    public ResponseEntity<PandaMatch[]> getUpcomingMatches(){
         return pandaService.getUpcomingMatches();
     }
 

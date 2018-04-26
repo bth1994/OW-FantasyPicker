@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
@@ -25,7 +26,21 @@ public class PandaMatch {
         this.id = id;
         this.date = date;
         this.teams = teams;
-//        Iterator iterator = teams.iterator();
+        Iterator iterator = teams.iterator();
+        Object temp = iterator.next();
+        String tempString = temp.toString();
+        Pattern pattern = Pattern.compile("id=(\\d\\d\\d\\d)");
+        Matcher matcher = pattern.matcher(tempString);
+        System.out.println(matcher.find());
+        System.out.println(matcher.group().substring(3));
+        opponent1 = Integer.parseInt(matcher.group().substring(3));
+        Object temp2 = iterator.next();
+        String tempString2 = temp2.toString();
+        Pattern pattern2 = Pattern.compile("id=(\\d\\d\\d\\d)");
+        Matcher matcher2 = pattern2.matcher(tempString2);
+        System.out.println(matcher2.find());
+        System.out.println(matcher2.group().substring(3));
+        opponent2 = Integer.parseInt(matcher2.group().substring(3));
     }
 
     public int getId() {
