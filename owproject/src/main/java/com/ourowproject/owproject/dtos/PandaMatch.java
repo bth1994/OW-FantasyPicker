@@ -3,8 +3,10 @@ package com.ourowproject.owproject.dtos;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -17,39 +19,38 @@ public class PandaMatch {
 
     @JsonProperty("id") public int id;
     @JsonProperty("begin_at") public String date;
-    @JsonProperty("opponents") public Iterable teams;
     public int opponent1;
     public int opponent2;
 
-    @JsonCreator
-    public PandaMatch(@JsonProperty("id") int id, @JsonProperty("begin_at") String date, @JsonProperty("opponents") Iterable teams){
+    public PandaMatch(int id, String date, int opponent1, int opponent2) {
         this.id = id;
         this.date = date;
-        this.teams = teams;
-        Iterator iterator = teams.iterator();
-        Object temp = iterator.next();
-        String tempString = temp.toString();
-        Pattern pattern = Pattern.compile("id=(\\d\\d\\d\\d)");
-        Matcher matcher = pattern.matcher(tempString);
-        if (matcher.find()){
-            System.out.println("team1 " + matcher.group().substring(3));
-            opponent1 = Integer.parseInt(matcher.group().substring(3));
-        } else {
-            opponent1 = 0;
-            System.out.println("team2 " + opponent1);
+        this.opponent1 = opponent1;
+        this.opponent2 = opponent2;
+    }
+
+    public PandaMatch(){
+        this.id = 0;
+        this.date = "";
+        this.opponent1 = 0;
+        this.opponent2 = 0;
+    }
+
+    public PandaMatch(String result) throws IOException{
+        ObjectMapper objectMapper = new ObjectMapper();
+        int id = objectMapper.readTree(result).get("id").asInt();
+        String date = objectMapper.readTree(result).get("begin_at").asText();
+        JsonNode opponents = objectMapper.readTree(result).get("opponents");
+        ArrayList<Integer> opids = new ArrayList<>();
+        if (opponents.isArray()) {
+            for (JsonNode jsonNode : opponents) {
+                opids.add(jsonNode.get("id").asInt());
+            }
         }
-        Object temp2 = iterator.next();
-        String tempString2 = temp2.toString();
-        Pattern pattern2 = Pattern.compile("id=(\\d\\d\\d\\d)");
-        Matcher matcher2 = pattern2.matcher(tempString2);
-        System.out.println(id);
-        if (matcher2.find()){
-            System.out.println("team2 " + matcher2.group().substring(3));
-            opponent2 = Integer.parseInt(matcher2.group().substring(3));
-        } else {
-            opponent2 = 0;
-            System.out.println("team2 " + opponent2);
-        }
+        this.id = id;
+        this.date = date;
+        this.opponent1 = opids.get(0);
+        this.opponent2 = opids.get(1);
     }
 
     public int getId() {
@@ -66,14 +67,6 @@ public class PandaMatch {
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public Iterable getTeams() {
-        return teams;
-    }
-
-    public void setTeams(Iterable teams) {
-        this.teams = teams;
     }
 
     public int getOpponent1() {

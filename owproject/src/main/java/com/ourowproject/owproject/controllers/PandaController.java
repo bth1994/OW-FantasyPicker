@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+
 @RestController
 public class PandaController {
 
@@ -19,12 +21,12 @@ public class PandaController {
     }
 
     @RequestMapping(value = "/panda/upcomingmatches", method = RequestMethod.GET)
-    public ResponseEntity<PandaMatch[]> getUpcomingMatches(){
+    public ResponseEntity<Iterable<PandaMatch>> getUpcomingMatches() throws IOException {
         return pandaService.getUpcomingMatches();
     }
 
     @RequestMapping(value = "/panda/test", method = RequestMethod.GET)
-    public ResponseEntity<PandaMatch> getTestMatch(){
+    public ResponseEntity<PandaMatch> getTestMatch() throws IOException {
         return pandaService.getTestMatch();
     }
 }

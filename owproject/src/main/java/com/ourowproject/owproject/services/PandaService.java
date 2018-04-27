@@ -1,6 +1,8 @@
 package com.ourowproject.owproject.services;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.ourowproject.owproject.dtos.PandaMatch;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -9,31 +11,36 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.JsonValue;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 @Service
 public class PandaService {
 
 
-    public ResponseEntity<PandaMatch[]> getUpcomingMatches() {
+    public ResponseEntity<Iterable<PandaMatch>> getUpcomingMatches() throws IOException {
         RestTemplate restTemplate = new RestTemplate();
         String uri = "https://api.pandascore.co/ow/matches/upcoming?token=KkzVUEMJ_pTaGQvbtRQo7YQewGzIauH1XqUEWwuRC-KQVQWg8U0";
-        ResponseEntity<String> responseEntity = restTemplate.getForEntity(uri, String.class);
-        System.out.println(responseEntity.getBody());
+        ResponseEntity<JsonObject> responseEntity = restTemplate.getForEntity(uri, JsonObject.class);
+        JsonArray jsonValues = responseEntity.getBody().getJsonArray(responseEntity.getBody().toString());
+        for (JsonValue json:jsonValues) {
+            new PandaMatch(json.toString());
+        }
         ObjectMapper objectMapper = new ObjectMapper();
         PandaMatch[] pandaMatches = null;
-        try {
-            pandaMatches = objectMapper.readValue(responseEntity.getBody(), PandaMatch[].class);
-        } catch (Exception e){
-            System.out.println(e);
-        }
-        return new ResponseEntity<>(pandaMatches, HttpStatus.OK);
+        return null;
+        //return new ResponseEntity<>(pandaMatches, HttpStatus.OK);
     }
 
-    public ResponseEntity<PandaMatch> getTestMatch() {
+    public ResponseEntity<PandaMatch> getTestMatch() throws IOException {
         RestTemplate restTemplate = new RestTemplate();
         String uri = "https://api.pandascore.co/ow/matches/20502?token=KkzVUEMJ_pTaGQvbtRQo7YQewGzIauH1XqUEWwuRC-KQVQWg8U0";
-        PandaMatch result = restTemplate.getForObject(uri, PandaMatch.class);
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        String result = restTemplate.getForObject(uri, String.class);
+        PandaMatch pandaMatch = new PandaMatch(result);
+        return new ResponseEntity<>(pandaMatch, HttpStatus.OK);
     }
 }
