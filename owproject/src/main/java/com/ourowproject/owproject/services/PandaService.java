@@ -22,18 +22,19 @@ import java.util.Iterator;
 public class PandaService {
 
 
+    //Can't get list of upcoming games, /fliptable
     public ResponseEntity<Iterable<PandaMatch>> getUpcomingMatches() throws IOException {
         RestTemplate restTemplate = new RestTemplate();
         String uri = "https://api.pandascore.co/ow/matches/upcoming?token=KkzVUEMJ_pTaGQvbtRQo7YQewGzIauH1XqUEWwuRC-KQVQWg8U0";
-        ResponseEntity<JsonObject> responseEntity = restTemplate.getForEntity(uri, JsonObject.class);
-        JsonArray jsonValues = responseEntity.getBody().getJsonArray(responseEntity.getBody().toString());
-        for (JsonValue json:jsonValues) {
-            new PandaMatch(json.toString());
-        }
-        ObjectMapper objectMapper = new ObjectMapper();
-        PandaMatch[] pandaMatches = null;
+        String result = restTemplate.getForObject(uri, String.class);
+//        String[] strings = result.split("\"games\":\\[");
+//        ArrayList<PandaMatch> pandaMatches = new ArrayList<>();
+//        for (String string:strings) {
+//            System.out.println(string);
+//            PandaMatch pandaMatch = new PandaMatch(string);
+//            pandaMatches.add(pandaMatch);
+//        }
         return null;
-        //return new ResponseEntity<>(pandaMatches, HttpStatus.OK);
     }
 
     public ResponseEntity<PandaMatch> getTestMatch() throws IOException {
